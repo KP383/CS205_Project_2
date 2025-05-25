@@ -1,0 +1,138 @@
+Enter dataset file path: This dataset has 12 features (not including the class attribute), with 500 instances.
+
+Select the algorithm to run:
+1) Forward Selection
+2) Backward Elimination
+Your choice: 
+>>> Forward Selection (Greedy Search)
+------------------------------------------------------------
+Level 1:
+  Trying features: [0] -> Accuracy: 84.8%
+  Trying features: [1] -> Accuracy: 67.0%
+  Trying features: [2] -> Accuracy: 66.2%
+  Trying features: [3] -> Accuracy: 66.2%
+  Trying features: [4] -> Accuracy: 69.0%
+  Trying features: [5] -> Accuracy: 67.0%
+  Trying features: [6] -> Accuracy: 65.2%
+  Trying features: [7] -> Accuracy: 71.0%
+  Trying features: [8] -> Accuracy: 66.8%
+  Trying features: [9] -> Accuracy: 70.2%
+  Trying features: [10] -> Accuracy: 69.0%
+  Trying features: [11] -> Accuracy: 66.4%
+-> Selected feature set at level 1: [0], Accuracy: 84.8%
+-> Best feature set so far: [0], Accuracy: 84.8%
+------------------------------------------------------------
+Level 2:
+  Trying features: [0, 1] -> Accuracy: 85.6%
+  Trying features: [0, 2] -> Accuracy: 82.6%
+  Trying features: [0, 3] -> Accuracy: 83.2%
+  Trying features: [0, 4] -> Accuracy: 85.4%
+  Trying features: [0, 5] -> Accuracy: 83.4%
+  Trying features: [0, 6] -> Accuracy: 84.6%
+  Trying features: [0, 7] -> Accuracy: 94.6%
+  Trying features: [0, 8] -> Accuracy: 83.8%
+  Trying features: [0, 9] -> Accuracy: 82.8%
+  Trying features: [0, 10] -> Accuracy: 84.4%
+  Trying features: [0, 11] -> Accuracy: 85.0%
+-> Selected feature set at level 2: [0, 7], Accuracy: 94.6%
+-> Best feature set so far: [0, 7], Accuracy: 94.6%
+------------------------------------------------------------
+Level 3:
+  Trying features: [0, 7, 1] -> Accuracy: 91.4%
+  Trying features: [0, 7, 2] -> Accuracy: 91.0%
+  Trying features: [0, 7, 3] -> Accuracy: 91.2%
+  Trying features: [0, 7, 4] -> Accuracy: 91.6%
+  Trying features: [0, 7, 5] -> Accuracy: 92.0%
+  Trying features: [0, 7, 6] -> Accuracy: 93.2%
+  Trying features: [0, 7, 8] -> Accuracy: 91.8%
+  Trying features: [0, 7, 9] -> Accuracy: 91.8%
+  Trying features: [0, 7, 10] -> Accuracy: 89.6%
+  Trying features: [0, 7, 11] -> Accuracy: 92.4%
+-> Selected feature set at level 3: [0, 7, 6], Accuracy: 93.2%
+-> Best feature set so far: [0, 7], Accuracy: 94.6%
+------------------------------------------------------------
+Level 4:
+  Trying features: [0, 7, 6, 1] -> Accuracy: 88.4%
+  Trying features: [0, 7, 6, 2] -> Accuracy: 89.6%
+  Trying features: [0, 7, 6, 3] -> Accuracy: 88.0%
+  Trying features: [0, 7, 6, 4] -> Accuracy: 89.8%
+  Trying features: [0, 7, 6, 5] -> Accuracy: 86.4%
+  Trying features: [0, 7, 6, 8] -> Accuracy: 87.0%
+  Trying features: [0, 7, 6, 9] -> Accuracy: 87.6%
+  Trying features: [0, 7, 6, 10] -> Accuracy: 87.4%
+  Trying features: [0, 7, 6, 11] -> Accuracy: 88.0%
+-> Selected feature set at level 4: [0, 7, 6, 4], Accuracy: 89.8%
+-> Best feature set so far: [0, 7], Accuracy: 94.6%
+------------------------------------------------------------
+Level 5:
+  Trying features: [0, 7, 6, 4, 1] -> Accuracy: 83.0%
+  Trying features: [0, 7, 6, 4, 2] -> Accuracy: 85.4%
+  Trying features: [0, 7, 6, 4, 3] -> Accuracy: 84.4%
+  Trying features: [0, 7, 6, 4, 5] -> Accuracy: 85.2%
+  Trying features: [0, 7, 6, 4, 8] -> Accuracy: 85.2%
+  Trying features: [0, 7, 6, 4, 9] -> Accuracy: 87.2%
+  Trying features: [0, 7, 6, 4, 10] -> Accuracy: 82.4%
+  Trying features: [0, 7, 6, 4, 11] -> Accuracy: 84.6%
+-> Selected feature set at level 5: [0, 7, 6, 4, 9], Accuracy: 87.2%
+-> Best feature set so far: [0, 7], Accuracy: 94.6%
+------------------------------------------------------------
+Level 6:
+  Trying features: [0, 7, 6, 4, 9, 1] -> Accuracy: 78.6%
+  Trying features: [0, 7, 6, 4, 9, 2] -> Accuracy: 83.2%
+  Trying features: [0, 7, 6, 4, 9, 3] -> Accuracy: 79.4%
+  Trying features: [0, 7, 6, 4, 9, 5] -> Accuracy: 80.4%
+  Trying features: [0, 7, 6, 4, 9, 8] -> Accuracy: 81.8%
+  Trying features: [0, 7, 6, 4, 9, 10] -> Accuracy: 81.4%
+  Trying features: [0, 7, 6, 4, 9, 11] -> Accuracy: 82.0%
+-> Selected feature set at level 6: [0, 7, 6, 4, 9, 2], Accuracy: 83.2%
+-> Best feature set so far: [0, 7], Accuracy: 94.6%
+------------------------------------------------------------
+Level 7:
+  Trying features: [0, 7, 6, 4, 9, 2, 1] -> Accuracy: 77.4%
+  Trying features: [0, 7, 6, 4, 9, 2, 3] -> Accuracy: 76.0%
+  Trying features: [0, 7, 6, 4, 9, 2, 5] -> Accuracy: 78.6%
+  Trying features: [0, 7, 6, 4, 9, 2, 8] -> Accuracy: 77.6%
+  Trying features: [0, 7, 6, 4, 9, 2, 10] -> Accuracy: 78.6%
+  Trying features: [0, 7, 6, 4, 9, 2, 11] -> Accuracy: 81.0%
+-> Selected feature set at level 7: [0, 7, 6, 4, 9, 2, 11], Accuracy: 81.0%
+-> Best feature set so far: [0, 7], Accuracy: 94.6%
+------------------------------------------------------------
+Level 8:
+  Trying features: [0, 7, 6, 4, 9, 2, 11, 1] -> Accuracy: 75.8%
+  Trying features: [0, 7, 6, 4, 9, 2, 11, 3] -> Accuracy: 75.0%
+  Trying features: [0, 7, 6, 4, 9, 2, 11, 5] -> Accuracy: 78.6%
+  Trying features: [0, 7, 6, 4, 9, 2, 11, 8] -> Accuracy: 79.6%
+  Trying features: [0, 7, 6, 4, 9, 2, 11, 10] -> Accuracy: 78.2%
+-> Selected feature set at level 8: [0, 7, 6, 4, 9, 2, 11, 8], Accuracy: 79.6%
+-> Best feature set so far: [0, 7], Accuracy: 94.6%
+------------------------------------------------------------
+Level 9:
+  Trying features: [0, 7, 6, 4, 9, 2, 11, 8, 1] -> Accuracy: 73.4%
+  Trying features: [0, 7, 6, 4, 9, 2, 11, 8, 3] -> Accuracy: 75.2%
+  Trying features: [0, 7, 6, 4, 9, 2, 11, 8, 5] -> Accuracy: 77.8%
+  Trying features: [0, 7, 6, 4, 9, 2, 11, 8, 10] -> Accuracy: 76.6%
+-> Selected feature set at level 9: [0, 7, 6, 4, 9, 2, 11, 8, 5], Accuracy: 77.8%
+-> Best feature set so far: [0, 7], Accuracy: 94.6%
+------------------------------------------------------------
+Level 10:
+  Trying features: [0, 7, 6, 4, 9, 2, 11, 8, 5, 1] -> Accuracy: 70.4%
+  Trying features: [0, 7, 6, 4, 9, 2, 11, 8, 5, 3] -> Accuracy: 75.8%
+  Trying features: [0, 7, 6, 4, 9, 2, 11, 8, 5, 10] -> Accuracy: 75.2%
+-> Selected feature set at level 10: [0, 7, 6, 4, 9, 2, 11, 8, 5, 3], Accuracy: 75.8%
+-> Best feature set so far: [0, 7], Accuracy: 94.6%
+------------------------------------------------------------
+Level 11:
+  Trying features: [0, 7, 6, 4, 9, 2, 11, 8, 5, 3, 1] -> Accuracy: 70.4%
+  Trying features: [0, 7, 6, 4, 9, 2, 11, 8, 5, 3, 10] -> Accuracy: 72.2%
+-> Selected feature set at level 11: [0, 7, 6, 4, 9, 2, 11, 8, 5, 3, 10], Accuracy: 72.2%
+-> Best feature set so far: [0, 7], Accuracy: 94.6%
+------------------------------------------------------------
+Level 12:
+  Trying features: [0, 7, 6, 4, 9, 2, 11, 8, 5, 3, 10, 1] -> Accuracy: 69.2%
+-> Selected feature set at level 12: [0, 7, 6, 4, 9, 2, 11, 8, 5, 3, 10, 1], Accuracy: 69.2%
+-> Best feature set so far: [0, 7], Accuracy: 94.6%
+------------------------------------------------------------
+
+>>> Finished Forward Selection! Best feature subset: [0, 7] with Accuracy: 94.6%
+
+Total Time: 2.25 seconds

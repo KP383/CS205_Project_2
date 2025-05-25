@@ -48,13 +48,14 @@ def leave_one_out_accuracy(X, y, feature_subset):
             correct += 1
     return (correct / len(X)) * 100
 
-def exhaustive_forward_selection(X, y):
+def forward_selection(X, y):
     n_features = X.shape[1]
+    selected = []
     all_results = defaultdict(float)
     best_overall = []
     best_accuracy = 0.0
 
-    print("\n>>> Forward Selection (Exhaustive Tree Search)")
+    print("\n>>> Forward Selection (Greedy Search)")
     print("-" * 60)
 
     for level in range(1, n_features + 1):
@@ -62,61 +63,68 @@ def exhaustive_forward_selection(X, y):
         best_this_level = None
         best_this_level_acc = 0.0
 
-        for subset in combinations(range(n_features), level):
-            acc = leave_one_out_accuracy(X, y, list(subset))
-            
-            print(f"  Trying feature(s): {list(subset)} -> Accuracy: {acc:.1f}%")
-
+        for f in range(n_features):
+            if f in selected:
+                continue
+            trial = selected + [f]
+            acc = leave_one_out_accuracy(X, y, trial)
+            print(f"  Trying features: {trial} -> Accuracy: {acc:.1f}%")
             if acc > best_this_level_acc:
-                best_this_level = subset
+                best_this_level = f
                 best_this_level_acc = acc
-                
 
             if acc > best_accuracy:
-                best_overall = list(subset)
+                best_overall = trial[:]
                 best_accuracy = acc
 
-        if best_this_level:
-            all_results[best_this_level] = best_this_level_acc
-            print(f"-> Selected feature set at level {level}: {list(best_this_level)}, Accuracy: {best_this_level_acc:.1f}%")
+        if best_this_level is not None:
+            selected.append(best_this_level)
+        all_results[tuple(selected)] = best_this_level_acc
+    
+        print(f"-> Selected feature set at level {level}: {selected}, Accuracy: {best_this_level_acc:.1f}%")
         print(f"-> Best feature set so far: {best_overall}, Accuracy: {best_accuracy:.1f}%")
         print("-" * 60)
 
     print(f"\n>>> Finished Forward Selection! Best feature subset: {best_overall} with Accuracy: {best_accuracy:.1f}%\n")
     return best_overall, best_accuracy, all_results
 
-def exhaustive_backward_elimination(X, y):
+def backward_elimination(X, y):
     n_features = X.shape[1]
+    selected = list(range(n_features))
     all_results = defaultdict(float)
-    full_set = tuple(range(n_features))
-    best_overall = list(full_set)
-    best_accuracy = leave_one_out_accuracy(X, y, list(full_set))
-    all_results[full_set] = best_accuracy
+    best_overall = selected[:]
+    best_accuracy = leave_one_out_accuracy(X, y, selected)
+    all_results[tuple(selected)] = best_accuracy
 
-    print("\n>>> Backward Elimination (Exhaustive Tree Search)")
+    print("\n>>> Backward Elimination (Greedy Search)")
     print("-" * 60)
-    print(f"Initial full feature set: {list(full_set)}, Accuracy: {best_accuracy:.1f}%\n")
+    print(f"Initial full feature set: {selected}, Accuracy: {best_accuracy:.1f}%\n")
 
-    for level in range(n_features - 1, 0, -1):
-        print(f"Level {n_features - level}:")
+    for level in range(1, n_features):
+        print(f"Level {level}:")
         best_this_level = None
         best_this_level_acc = 0.0
 
-        for subset in combinations(range(n_features), level):
-            acc = leave_one_out_accuracy(X, y, list(subset))
-            print(f"  Trying feature(s): {list(subset)} -> Accuracy: {acc:.1f}%")
+        for f in selected:
+            trial = selected[:]
+            trial.remove(f)
+            acc = leave_one_out_accuracy(X, y, trial)
+            print(f"  Trying features: {trial} -> Accuracy: {acc:.1f}%")
 
             if acc > best_this_level_acc:
-                best_this_level = subset
+                best_this_level = f
                 best_this_level_acc = acc
 
             if acc > best_accuracy:
-                best_overall = list(subset)
+                best_overall = trial[:]
                 best_accuracy = acc
 
-        if best_this_level:
-            all_results[best_this_level] = best_this_level_acc
-            print(f"-> Selected feature set at level {n_features - level}: {list(best_this_level)}, Accuracy: {best_this_level_acc:.1f}%")
+        if best_this_level is not None:
+            selected.remove(best_this_level)
+        
+        all_results[tuple(selected)] = best_this_level_acc
+
+        print(f"-> Selected feature set at level {level}: {selected}, Accuracy: {best_this_level_acc:.1f}%")
         print(f"-> Best feature set so far: {best_overall}, Accuracy: {best_accuracy:.1f}%")
         print("-" * 60)
 
@@ -126,7 +134,7 @@ def exhaustive_backward_elimination(X, y):
 # -------- Main Execution --------
 if __name__ == "__main__":
 
-    sys.stdout = OutputLogger("output.txt")
+    sys.stdout = OutputLogger("logs/output.txt")
 
     file_path = input("Enter dataset file path: ")
     X, y = load_dataset(file_path)
@@ -139,15 +147,15 @@ if __name__ == "__main__":
     choice = int(input("Your choice: ").strip())
     start_time = time.time()
     if choice == 1:
-        best_features, best_acc, result_dict = exhaustive_forward_selection(X, y)
+        best_features, best_acc, result_dict = forward_selection(X, y)
     elif choice == 2:
-        best_features, best_acc, result_dict = exhaustive_backward_elimination(X, y)
+        best_features, best_acc, result_dict = backward_elimination(X, y)
     else:
         print("Invalid choice.")
         exit()
-    print(f"Total Time: {time.time() - start_time:.2f}/60 minutes")
+    print(f"Total Time: {(time.time() - start_time):.2f} seconds")
 
     # Optional: save results for plotting
-    with open("feature_accuracy_log.txt", "w") as f:
+    with open("logs/feature_accuracy_log.txt", "w") as f:
         for feat_set, acc in result_dict.items():
             f.write(f"{list(feat_set)}, {acc:.2f}\n")

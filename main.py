@@ -146,6 +146,7 @@ if __name__ == "__main__":
         file_path = input("Enter dataset file path: ")
         X, y = load_dataset(file_path)
         print(f"This dataset has {len(X[0])} features (not including the class attribute), with {len(X)} instances.")
+    
     elif data_source_choice == 2:
         dataset_id = 186
         dataset = fetch_ucirepo(id=dataset_id)
@@ -155,6 +156,7 @@ if __name__ == "__main__":
         y = y.to_numpy()
         print(f"Dataset from UC Irvine Dataset Repository(ID: {dataset_id} - Wine Quality)")
         print(f"This dataset has {X.shape[1]} features (not including the class attribute), with {X.shape[0]} instances.")
+    
     else:
         print("Invalid choice.")
         exit()

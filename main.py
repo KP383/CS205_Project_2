@@ -1,6 +1,6 @@
 import numpy as np
-from itertools import combinations
 from collections import defaultdict
+from ucimlrepo import fetch_ucirepo
 import time
 import sys
 
@@ -136,10 +136,30 @@ if __name__ == "__main__":
 
     sys.stdout = OutputLogger("logs/output.txt")
 
-    file_path = input("Enter dataset file path: ")
-    X, y = load_dataset(file_path)
+    print("\nSelect the data source:")
+    print("1) Local Directory")
+    print("2) UC Irvine Dataset Repository")
+
+    data_source_choice = int(input("Your choice: ").strip())
+
+    if data_source_choice == 1:
+        file_path = input("Enter dataset file path: ")
+        X, y = load_dataset(file_path)
+        print(f"This dataset has {len(X[0])} features (not including the class attribute), with {len(X)} instances.")
+    elif data_source_choice == 2:
+        dataset_id = 186
+        dataset = fetch_ucirepo(id=dataset_id)
+        X = dataset.data.features
+        y = dataset.data.targets
+        X = X.to_numpy()
+        y = y.to_numpy()
+        print(f"Dataset from UC Irvine Dataset Repository(ID: {dataset_id} - Wine Quality)")
+        print(f"This dataset has {X.shape[1]} features (not including the class attribute), with {X.shape[0]} instances.")
+    else:
+        print("Invalid choice.")
+        exit()
+
     X = normalize_features(X)
-    print(f"This dataset has {len(X[0])} features (not including the class attribute), with {len(X)} instances.")
     print("\nSelect the algorithm to run:")
     print("1) Forward Selection")
     print("2) Backward Elimination")

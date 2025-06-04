@@ -51,10 +51,6 @@ The program will display the following:
   - The best feature subset and its accuracy at each level.
 - The total time taken for the algorithm.
 
-Additionally, the results will be logged to:
-- `logs/XXXX_logs.txt` for the full output.
-- `logs/XXXX_accuracy_output.txt` for best feature subsets and their accuracies at each level.
-
 ### Example
 Please check `logs/forward_small_logs.txt` and `logs/forward_small_accuracy_output.txt` file.
 
